@@ -1,0 +1,36 @@
+//WAP for inputting ten numbers and checking if the number we searched is present within the given numbers.
+
+#include <stdio.h>
+void LinearSearch(int a[], int r, int search)
+{
+    int k=0, i;
+    for (i = 0; i < 10; i++)
+    {
+        if (a[i] == search)
+        {
+            printf("Number is found at position %d\n", i+1);
+            k++;
+            break;
+        }
+    }
+    if (k == 0)
+    {
+        printf("Number is not found\n");
+    }
+}
+int main()
+{
+    int i, a[10], search, r;
+    printf("Enter a range:");
+    scanf("%d",&r);
+    printf("Enter %d numbers:", r);
+    for (i = 0; i < r; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    printf("Enter the number you want to search: ");
+    scanf("%d", &search);
+    LinearSearch(a, r, search);
+    
+    return 0;
+}
