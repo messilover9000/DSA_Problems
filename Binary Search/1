@@ -1,0 +1,61 @@
+/*You are required to implement a program that performs a binary search on a sorted array of integers. The program should:
+	1.	Prompt the user to input the size of the array (N) and the elements of the array (in sorted order).
+	2.	Accept an integer (Search) as input that the user wants to search for in the array.
+	3.	Perform a binary search to determine if the Search element exists in the array:
+	•	If the element is found, print the position (1-based index) where it is located.
+	•	If the element is not found, display a message indicating that the element is not present in the array.
+
+Constraints:
+	•	The array must be sorted before performing a binary search.
+	•	The size of the array (N) should not exceed 20.
+*/
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a[20], l = 0, r, Search, i, m, N;
+    
+    cout << "Enter a range: ";
+    cin >> N;
+    r = N - 1;
+    
+    cout << "Enter " << N << " numbers: ";
+    for (i = 0; i < N; i++)
+    {
+        cin >> a[i];
+    }
+    cout << "Enter a number that you want to search: ";
+    cin >> Search;
+    
+    while (l <= r)
+    {
+        m = (l + r) / 2;
+        
+        if (a[m] == Search)
+        {
+            cout << "Number is found at position " << m + 1;
+            break;
+        }
+        
+        else if (a[m] > Search)
+        {
+            r = m - 1;
+        }
+        
+        else if (a[m] < Search)
+        {
+            l = m + 1;
+        }
+        
+    }
+    if (l > r)
+    {
+        cout << "Number is not found";
+    }
+    
+}
+// Logic:
+// 	1.	Binary Search: A search algorithm that works on sorted arrays. It repeatedly divides the search range in half, reducing the problem size at every step.
+// 	2.	Efficiency: Instead of iterating through the entire array (as in linear search), binary search reduces the number of comparisons significantly, achieving a time complexity of O(\log N).
