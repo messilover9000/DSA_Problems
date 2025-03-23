@@ -1,0 +1,75 @@
+/* A list of n numbers and a target number k are given. The task is to determine the 1-based position of k in the list. If k is not found in the list, -1 should be returned.
+
+Input:
+	1.	An integer n (1 ≤ n ≤ 100,000) representing the size of the list.
+	2.	A list of n integers, where each integer a[i] satisfies (1 ≤ a[i] ≤ 1010).
+	3.	An integer k (1 ≤ k ≤ 1010) representing the number whose position you need to find.
+
+Output:
+	1.	An integer indicating the 1-based position of k in the list. If k is not found, return -1.
+
+Constraints:
+	1.	The list must contain only valid integers within the range [1, 1010].
+	2.	The size of the list n must be between 1 and 100,000.
+	3.	The number k must also be within the range [1, 1010]. */
+
+ #include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+int findPositionOfK(const vector<long long>& arr, long long k) {
+    
+    unordered_map<long long, int> positionMap;
+    for (int i = 0; i < arr.size(); ++i) {
+        positionMap[arr[i]] = i + 1; 
+    }
+
+    
+    if (positionMap.find(k) != positionMap.end()) {
+        return positionMap[k];
+    } else {
+        return -1; 
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter the size of the list: ";
+    cin >> n;
+
+    
+    if (n <= 0 || n >= 100001) {
+        cout << "Invalid size!" << endl;
+        return 0;
+    }
+
+    vector<long long> arr(n);
+    cout << "Enter the numbers: ";
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+        if (arr[i] <= 0 || arr[i] >= 10000000000LL) {
+            cout << "Invalid number in the list!" << endl;
+            return 0;
+        }
+    }
+
+    long long k;
+    cout << "Enter the number to find: ";
+    cin >> k;
+
+    if (k <= 0 || k >= 10000000000LL) {
+        cout << "Invalid K!" << endl;
+        return 0;
+    }
+
+    // Find the position of K
+    int position = findPositionOfK(arr, k);
+    if (position != -1) {
+        cout << "Position of " << k << " is: " << position << endl;
+    } else {
+        cout << k << " is not in the list!" << endl;
+    }
+
+    return 0;
+}
